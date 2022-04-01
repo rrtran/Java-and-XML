@@ -4,63 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.helloandroid.MainActivity">
 
     <TextView
         android:id="@+id/label_bill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        style="@style/LabelStyle"
         android:layout_marginLeft="20dp"
-        android:padding="10dp"
+        android:layout_marginTop="20dp"
         android:minWidth="120dp"
-        android:textSize="28sp"
-        android:background="@color/lightGray"
         android:text="@string/label_bill" />
 
     <EditText
         android:id="@+id/amount_bill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_toRightOf="@+id/label_bill"
+        style="@style/InputStyle"
         android:layout_alignBottom="@+id/label_bill"
         android:layout_alignParentRight="true"
-        android:textSize="28sp"
-        android:gravity="center"
-        android:textColor="@color/darkBlue"
+        android:layout_marginRight="20dp"
+        android:layout_toRightOf="@+id/label_bill"
         android:hint="@string/amount_bill_hint"
         android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/label_tip_percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        style="@style/LabelStyle"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/label_bill"
         android:layout_alignLeft="@+id/label_bill"
         android:layout_alignRight="@+id/label_bill"
-        android:textSize="28sp"
-        android:background="@color/lightGray"
         android:text="@string/label_tip_percent"/>
 
     <EditText
         android:id="@+id/amount_tip_percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        style="@style/InputStyle"
         android:layout_toRightOf="@+id/label_tip_percent"
         android:layout_alignBottom="@+id/label_tip_percent"
         android:layout_alignRight="@+id/amount_bill"
-        android:textSize="28sp"
-        android:gravity="center"
-        android:textColor="@color/darkBlue"
         android:hint="@string/amount_tip_percent_hint"
         android:inputType="number" />
     <!-- red line -->
@@ -76,60 +54,41 @@
 
     <TextView
         android:id="@+id/label_tip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/LabelStyle"
         android:layout_marginTop="20dp"
-        android:padding="10dp"
         android:layout_below="@id/red_line"
         android:layout_alignLeft="@+id/label_bill"
         android:layout_alignRight="@+id/label_bill"
-        android:textSize="20sp"
-        android:background="@color/lightGray"
         android:text="@string/label_tip"/>
 
         <TextView
             android:id="@+id/amount_tip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            style="@style/OutputStyle"
             android:layout_toRightOf="@+id/label_tip"
             android:layout_alignBottom="@+id/label_tip"
-            android:layout_alignRight="@id/amount_bill"
-            android:background="@color/lightGreen"
-            android:gravity="center"
-            android:textSize="20sp"/>
+            android:layout_alignRight="@id/amount_bill"/>
 
         <TextView
             android:id="@+id/label_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/LabelStyle"
             android:layout_marginTop="20dp"
-            android:padding="10dp"
             android:layout_below="@id/label_tip"
             android:layout_alignLeft="@+id/label_bill"
             android:layout_alignRight="@+id/label_bill"
-            android:textSize="20sp"
-            android:background="@color/lightGray"
             android:text="@string/label_total"/>
 
     <TextView
         android:id="@+id/amount_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/OutputStyle"
         android:layout_alignRight="@id/amount_bill"
         android:layout_alignBottom="@+id/label_total"
-        android:layout_toRightOf="@+id/label_total"
-        android:background="@color/lightGreen"
-        android:padding="10dp"
-        android:textSize="20sp" />
+        android:layout_toRightOf="@+id/label_total" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
         android:layout_marginTop="20dp"
-        android:padding="10dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/amount_total"
-        android:background="@color/darkGreen"
-        android:text="@string/button_calculate"/>
+        android:text="@string/button_calculate"
+        android:onClick="calculate"/>
 </RelativeLayout>
