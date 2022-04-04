@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.helloandroid.MainActivity">
 
+    <!-- The bill -->
     <TextView
         android:id="@+id/label_bill"
         style="@style/LabelStyle"
@@ -24,6 +25,7 @@
         android:hint="@string/amount_bill_hint"
         android:inputType="numberDecimal" />
 
+    <!-- the tip percent -->
     <TextView
         android:id="@+id/label_tip_percent"
         style="@style/LabelStyle"
@@ -41,6 +43,7 @@
         android:layout_alignRight="@+id/amount_bill"
         android:hint="@string/amount_tip_percent_hint"
         android:inputType="number" />
+
     <!-- red line -->
     <View
         android:id="@+id/red_line"
@@ -52,6 +55,7 @@
         android:layout_alignRight="@id/amount_bill"
         android:background="#FF00"/>
 
+    <!-- the tip amount in dollars ($) -->
     <TextView
         android:id="@+id/label_tip"
         style="@style/LabelStyle"
@@ -61,21 +65,22 @@
         android:layout_alignRight="@+id/label_bill"
         android:text="@string/label_tip"/>
 
-        <TextView
-            android:id="@+id/amount_tip"
-            style="@style/OutputStyle"
-            android:layout_toRightOf="@+id/label_tip"
-            android:layout_alignBottom="@+id/label_tip"
-            android:layout_alignRight="@id/amount_bill"/>
+    <TextView
+        android:id="@+id/amount_tip"
+        style="@style/OutputStyle"
+        android:layout_toRightOf="@+id/label_tip"
+        android:layout_alignBottom="@+id/label_tip"
+        android:layout_alignRight="@id/amount_bill"/>
 
-        <TextView
-            android:id="@+id/label_total"
-            style="@style/LabelStyle"
-            android:layout_marginTop="20dp"
-            android:layout_below="@id/label_tip"
-            android:layout_alignLeft="@+id/label_bill"
-            android:layout_alignRight="@+id/label_bill"
-            android:text="@string/label_total"/>
+    <!-- the total amount which is the bill plus tip amount -->
+    <TextView
+        android:id="@+id/label_total"
+        style="@style/LabelStyle"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/label_tip"
+        android:layout_alignLeft="@+id/label_bill"
+        android:layout_alignRight="@+id/label_bill"
+        android:text="@string/label_total"/>
 
     <TextView
         android:id="@+id/amount_total"
@@ -84,6 +89,7 @@
         android:layout_alignBottom="@+id/label_total"
         android:layout_toRightOf="@+id/label_total" />
 
+    <!-- a button to calculate the tip amount and then the total amount -->
     <Button
         style="@style/ButtonStyle"
         android:layout_marginTop="20dp"
