@@ -15,4 +15,7 @@
     <color name="lightGreen">#4400ff00</color>
     <color name="darkGreen">#F0F0</color>
     <color name="darkBlue">#F00F</color>
+    <color name="butter">#F6EB61</color>
+    <color name="coral">#E61717</color>
+    <color name="fuchsia">#FF005A</color>
 </resources>
