@@ -2,6 +2,8 @@ package com.example.helloandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -26,6 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
         buildGuiByCode(); // Build the GUI programatically
     }
 
+    // buildGuiByCode - constructs the GUI with Java code
     public void buildGuiByCode() {
         // Get width of the screen
         Point size = new Point();
@@ -68,6 +71,26 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(gridLayout); // Set gridLayout as the View of this Activity
     }
 
+    // enableButtons - Enable or disable the button
+    // @param boolean - A value of true will enable the buttons, and a value of false will disable the buttons
+    public void enableButtons(boolean enabled) {
+        for (int row = 0; row < TicTacToe.SIDE; row++) {
+            for (int column = 0; column < TicTacToe.SIDE; column++) {
+                buttons[row][column].setEnabled(enabled);
+            }
+        }
+    }
+
+    public void resetButtons() {
+        for (int row = 0; row < TicTacToe.SIDE; row++) {
+            for (int column = 0; column < TicTacToe.SIDE; column++)
+                buttons[row][column].setText("");
+        }
+    }
+
+    // update - processes a move, marks a tile with an "X" or "O", and updates the status
+    // @param int - the index of the row of a move
+    // @param int - the index of the column of a move
     public void update(int row, int column) {
         Log.w("MainActivity", "Inside update: " + row + ", " + column);
         int play = ticTacToeGame.play(row, column); // Make a move if allowed
@@ -82,16 +105,34 @@ public class MainActivity2 extends AppCompatActivity {
             status.setBackgroundColor(Color.RED);  // Set the background color of status to red
             enableButtons(false); // disable the buttons
             status.setText(ticTacToeGame.result()); // Display the result of the game inside status
+            showNewGameDialog();
         }
-
     }
 
-    // enableButtons - Enable or disable the button
-    // @param boolean - A value of true will enable the buttons, and a value of false will disable the buttons
-    public void enableButtons(boolean enabled) {
-        for (int row = 0; row < TicTacToe.SIDE; row++) {
-            for (int column = 0; column < TicTacToe.SIDE; column++) {
-                buttons[row][column].setEnabled(enabled);
+    // showNewGameDialog - shows a dialog where the user can choose to play the game again or quit
+    public void showNewGameDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this); // Define an alert dialog
+        alert.setTitle("This is fun"); // Set the title of the dialog
+        alert.setMessage("Play again?"); // Set the message of the dialog
+        PlayDialog playAgain = new PlayDialog(); // Define a PlayDialog object called playAgain
+        alert.setPositiveButton("Yes", playAgain); // Set the alert dialog's okay button and pass it playAgain
+        alert.setNegativeButton("No", playAgain); // Set the alert dialog's no button and pass it playAgain
+        alert.show(); // show the dialog
+    }
+
+    private class PlayDialog implements DialogInterface.OnClickListener {
+
+        @Override
+        public void onClick(DialogInterface dialogInterface, int id) {
+            if (id == -1) {
+                ticTacToeGame.resetGame(); // Clear the board and set the turn to player 1
+                enableButtons(true); // Make the buttons clickable so the game can be played
+                resetButtons();
+                status.setBackgroundColor(Color.GREEN); // Set the status to green
+                status.setText(ticTacToeGame.result()); // Set the status to indicate the game is being played
+            }
+            else if (id == -2) {
+                MainActivity2.this.finish(); // Close the activity
             }
         }
     }
