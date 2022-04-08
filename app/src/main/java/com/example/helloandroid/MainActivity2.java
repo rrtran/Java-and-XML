@@ -19,13 +19,22 @@ import android.widget.TextView;
 public class MainActivity2 extends AppCompatActivity {
     private TicTacToe ticTacToeGame;
     private Button[][] buttons;
-    private TextView status;
+    private ButtonGridAndTextView ticTacToeView;
+    TextView status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ticTacToeGame = new TicTacToe();
-        buildGuiByCode(); // Build the GUI programatically
+        Point size = new Point();
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        display.getSize(size);
+        int w = size.x / TicTacToe.SIDE; // Divide the width of the screen by 3 to use for the button size
+        ButtonHandler buttonHandler = new ButtonHandler();
+        ticTacToeView = new ButtonGridAndTextView(this, w, TicTacToe.SIDE, buttonHandler);
+        ticTacToeView.setStatusText(ticTacToeGame.result());
+        setContentView(ticTacToeView);
     }
 
     // buildGuiByCode - constructs the GUI with Java code
@@ -114,7 +123,7 @@ public class MainActivity2 extends AppCompatActivity {
         AlertDialog.Builder alert = new AlertDialog.Builder(this); // Define an alert dialog
         alert.setTitle("This is fun"); // Set the title of the dialog
         alert.setMessage("Play again?"); // Set the message of the dialog
-        PlayDialog playAgain = new PlayDialog(); // Define a PlayDialog object called playAgain
+        PlayDialog2 playAgain = new PlayDialog2(); // Define a PlayDialog object called playAgain
         alert.setPositiveButton("Yes", playAgain); // Set the alert dialog's okay button and pass it playAgain
         alert.setNegativeButton("No", playAgain); // Set the alert dialog's no button and pass it playAgain
         alert.show(); // show the dialog
@@ -137,6 +146,22 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
+    private class PlayDialog2 implements DialogInterface.OnClickListener {
+
+        @Override
+        public void onClick(DialogInterface dialogInterface, int id) {
+            if (id == -1) { /* YES button */
+                ticTacToeGame.resetGame();
+                ticTacToeView.enableButtons(true);
+                ticTacToeView.resetButtons();
+                ticTacToeView.setStatusBackgroundColor(Color.GREEN);
+                ticTacToeView.setStatusText(ticTacToeGame.result());
+            } else if (id == -2) { /* NO button */
+                MainActivity2.this.finish();
+            }
+        }
+    }
+
     private class ButtonHandler implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -146,12 +171,23 @@ public class MainActivity2 extends AppCompatActivity {
             // that was clicked
             for (int row = 0; row < TicTacToe.SIDE; row++) { // loop through the rows
                 for (int column = 0; column < TicTacToe.SIDE; column++) { // loop through the columns
-                    if (view == buttons[row][column]) // Check if the button that was clicked is the button in the current iteration of the loop
-                        // Once the button is found, run the update() method and pass it the matching button's row
-                        // and column to perform a play and update the button text to "X" or "O",
-                        // and possibly update the status Text View to state a winner or tie game,
-                        // and possibly disable the buttons if the game ends on this button click
-                        update(row, column);
+                    //update(row, column); - replaced by the code that is below this line
+                    if (ticTacToeView.isButton((Button)view, row, column)) { // Check if the button that was clicked is the button in the current iteration of the loop
+                        int play = ticTacToeGame.play(row, column);
+                        if (play == TicTacToe.PLAYER_ONE) {
+                            ticTacToeView.setButtonText (row, column, "X");
+                        }
+                        else if (play == TicTacToe.PLAYER_TWO) {
+                            ticTacToeView.setButtonText(row, column, "O");
+                        }
+
+                        if (ticTacToeGame.isGameOver()) {
+                            ticTacToeView.setStatusBackgroundColor(Color. RED);
+                            ticTacToeView.enableButtons(false);
+                            ticTacToeView.setStatusText(ticTacToeGame.result());
+                            showNewGameDialog();
+                        }
+                    }
                 }
             }
         }
