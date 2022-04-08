@@ -10,8 +10,8 @@ public class TicTacToe {
     // TicTacToe - initializes the game board and calls the resetGame() function
     public TicTacToe()
     {
-        game = new int[SIDE][SIDE];
-        resetGame();
+        game = new int[SIDE][SIDE]; // Initialize a 2D array representing the game board
+        resetGame(); // Clears the board and sets the turn to player 1
     }
 
     // play - Marks an empty spot if the move is legal
@@ -20,6 +20,7 @@ public class TicTacToe {
     // @return int - the old value of turn
     public int play(int row, int column)
     {
+        // Get the status of whether the row is on the board or off the board
         boolean rowIndexWithinRange = false;
         if (0 <= row) {
             if (row < SIDE)
@@ -31,6 +32,7 @@ public class TicTacToe {
             return 0;
         }
 
+        // Get the status of whether column on the board or off the board
         boolean columnIndexWithinRange = false;
         if (0 <= column) {
             if (column < SIDE)
@@ -42,10 +44,12 @@ public class TicTacToe {
             return 0;
         }
 
+        // Get the status of the move legality by checking if the row and column of the move
+        // is on the board or not and whether the tile at row and column is clear
         boolean moveLegalityState = false;
         if (rowIndexWithinRange == true) {
             if (columnIndexWithinRange == true) {
-                if (game[row][column] == 0) // the move is legal if the tile is empty
+                if (game[row][column] == 0) // the move is legal if the tile is clear
                     moveLegalityState = true;
             }
             else {
@@ -56,6 +60,7 @@ public class TicTacToe {
             return 0;
         }
 
+        // Check if the move is legal, and if it is, mark the tile at row and column with the player number
         int currentTurn = turn;
         if (moveLegalityState == true) {
             game[row][column] = turn;
@@ -80,14 +85,15 @@ public class TicTacToe {
     public int whoWon()
     {
         // Check each of the 3 rows if the first player is the winner or the second player is the winner
-        for (int row = 0; row <= SIDE - 1; row++) {
-            int firstColumnOfCurrentRow = game[row][0];
-            int secondColumnOfCurrentRow = game[row][1];
-            int thirdColumnOfCurrentRow = game[row][2];
-
+        for (int row = 0; row < SIDE; row++) {
+            int firstColumnOfCurrentRow = game[row][0]; // Current row, first column
+            int secondColumnOfCurrentRow = game[row][1]; // Current row, second column
+            int thirdColumnOfCurrentRow = game[row][2]; // Current row, third column
             boolean firstColumnIsPlayerOne = false;
             boolean secondColumnIsPlayerOne = false;
             boolean thirdColumnIsPlayerOne = false;
+
+            // Get the status of whether player 1 marked the tile at the first column of the current row
             if (firstColumnOfCurrentRow == PLAYER_ONE) {
                 firstColumnIsPlayerOne = true;
             }
@@ -95,6 +101,7 @@ public class TicTacToe {
                 firstColumnIsPlayerOne = false;
             }
 
+            // Get the status of whether player 1 marked the tile at the second column of the current row
             if (firstColumnIsPlayerOne == true) {
                 if (secondColumnOfCurrentRow == PLAYER_ONE)
                     secondColumnIsPlayerOne = true;
@@ -105,6 +112,7 @@ public class TicTacToe {
                 secondColumnIsPlayerOne = false;
             }
 
+            // Get the status of whether player 1 marked the tile at the third column of the current row
             if (secondColumnIsPlayerOne == true) {
                 if (thirdColumnOfCurrentRow == PLAYER_ONE)
                     thirdColumnIsPlayerOne = true;
@@ -115,6 +123,8 @@ public class TicTacToe {
                 thirdColumnIsPlayerOne = false;
             }
 
+            // Check if the first, second, and third columns of the current row is marked by player 1,
+            // and return player 1's number in order to process that player 1 is the winner
             if (firstColumnIsPlayerOne) {
                 if (secondColumnIsPlayerOne) {
                     if (thirdColumnIsPlayerOne) {
@@ -126,6 +136,7 @@ public class TicTacToe {
             boolean firstColumnIsPlayerTwo = false;
             boolean secondColumnIsPlayerTwo = false;
             boolean thirdColumnIsPlayerTwo = false;
+            // Get the status of whether the first column of the current row is marked by player two
             if (firstColumnOfCurrentRow == PLAYER_TWO) {
                 firstColumnIsPlayerTwo = true;
             }
@@ -133,6 +144,7 @@ public class TicTacToe {
                 firstColumnIsPlayerTwo = false;
             }
 
+            // Get the status of whether the second column of the current row is marked by player two
             if (firstColumnIsPlayerTwo == true) {
                 if (secondColumnOfCurrentRow == PLAYER_TWO)
                     secondColumnIsPlayerTwo = true;
@@ -143,6 +155,7 @@ public class TicTacToe {
                 secondColumnIsPlayerTwo = false;
             }
 
+            // Get the status of whether the third column of the current row is marked by player two
             if (secondColumnIsPlayerTwo == true) {
                 if (thirdColumnOfCurrentRow == PLAYER_TWO)
                     thirdColumnIsPlayerTwo = true;
@@ -153,6 +166,8 @@ public class TicTacToe {
                 thirdColumnIsPlayerTwo = false;
             }
 
+            // Check if the first, second, and third column of the current row is marked by player two,
+            // and return player two's number to process that player two is the winner
             if (firstColumnIsPlayerTwo == true) {
                 if (secondColumnIsPlayerTwo == true) {
                     if (thirdColumnIsPlayerTwo == true) {
@@ -170,6 +185,8 @@ public class TicTacToe {
             boolean firstRowOfCurrentColumnIsPlayerOne = false;
             boolean secondRowOfCurrentColumnIsPlayerOne = false;
             boolean thirdRowOfCurrentColumnIsPlayerOne = false;
+
+            // Get the player one's status on the first row of the current column
             if (firstRowOfCurrentColumn == PLAYER_ONE) {
                 firstRowOfCurrentColumnIsPlayerOne = true;
             }
@@ -177,6 +194,7 @@ public class TicTacToe {
                 firstRowOfCurrentColumnIsPlayerOne = false;
             }
 
+            // Get player one's status on the second row of the current column
             if (firstRowOfCurrentColumnIsPlayerOne == true) {
                 if (secondRowOfCurrentColumn == PLAYER_ONE)
                     secondRowOfCurrentColumnIsPlayerOne = true;
@@ -187,6 +205,7 @@ public class TicTacToe {
                 secondRowOfCurrentColumnIsPlayerOne = false;
             }
 
+            // Get player one's status on the third row of the current column
             if (secondRowOfCurrentColumnIsPlayerOne = true) {
                 if (thirdRowOfCurrentColumn == PLAYER_ONE)
                     thirdRowOfCurrentColumnIsPlayerOne = true;
@@ -197,6 +216,8 @@ public class TicTacToe {
                 thirdRowOfCurrentColumnIsPlayerOne = false;
             }
 
+            // Check the player one's status on the first, second, and third row of the current column,
+            // and return player one's number if player one marked the tile
             if (firstRowOfCurrentColumnIsPlayerOne == true) {
                 if (secondRowOfCurrentColumnIsPlayerOne == true) {
                     if (thirdRowOfCurrentColumnIsPlayerOne == true)
@@ -207,6 +228,8 @@ public class TicTacToe {
             boolean firstRowOfCurrentColumnIsPlayerTwo = false;
             boolean secondRowOfCurrentColumnIsPlayerTwo = false;
             boolean thirdRowOfCurrentColumnIsPlayerTwo = false;
+
+            // Get player two's status on the first row of the current column
             if (firstRowOfCurrentColumn == PLAYER_TWO) {
                 firstRowOfCurrentColumnIsPlayerTwo = true;
             }
@@ -214,6 +237,7 @@ public class TicTacToe {
                 firstRowOfCurrentColumnIsPlayerTwo = false;
             }
 
+            // Get player two's status on the second row of the current column
             if (firstRowOfCurrentColumnIsPlayerTwo == true) {
                 if (secondRowOfCurrentColumn == PLAYER_TWO)
                     secondRowOfCurrentColumnIsPlayerTwo = true;
@@ -224,6 +248,7 @@ public class TicTacToe {
                 secondRowOfCurrentColumnIsPlayerTwo = false;
             }
 
+            // Get player two's status on the third row of the current column
             if (secondRowOfCurrentColumnIsPlayerTwo == true) {
                 if (thirdRowOfCurrentColumn == PLAYER_TWO)
                     thirdRowOfCurrentColumnIsPlayerTwo = true;
@@ -234,6 +259,8 @@ public class TicTacToe {
                 thirdRowOfCurrentColumnIsPlayerTwo = false;
             }
 
+            // Check the status of the first, second, and third row of the current column to see if player two marked it,
+            // and if player two marked all 3 spots, return player two's number
             if (firstRowOfCurrentColumnIsPlayerTwo == true) {
                 if (secondRowOfCurrentColumnIsPlayerTwo == true) {
                     if (thirdRowOfCurrentColumnIsPlayerTwo == true)
@@ -245,14 +272,16 @@ public class TicTacToe {
         int firstTileOfDiagonal1 = game[0][0];
         int secondTileOfDiagonal1 = game[1][1];
         int thirdTileOfDiagonal1 = game[2][2];
-        boolean firstTileOfDiagonal1IsPlayerOne = false;
-        boolean secondTileOfDiagonal1IsPlayerOne = false;
-        boolean thirdTileOfDiagonal1IsPlayerOne = false;
 
         // Check one of the diagonals if player one is the winner
         // 1|_|_
         // _|1|_
         //  | |1
+        boolean firstTileOfDiagonal1IsPlayerOne = false;
+        boolean secondTileOfDiagonal1IsPlayerOne = false;
+        boolean thirdTileOfDiagonal1IsPlayerOne = false;
+
+        // Get player one's status on the first row and first column
         if (firstTileOfDiagonal1 == PLAYER_ONE) {
             firstTileOfDiagonal1IsPlayerOne = true;
         }
@@ -260,6 +289,7 @@ public class TicTacToe {
             firstTileOfDiagonal1IsPlayerOne = false;
         }
 
+        // Get player one's status on the second row and second column
         if (firstTileOfDiagonal1IsPlayerOne == true) {
             if (secondTileOfDiagonal1 == PLAYER_ONE)
                 secondTileOfDiagonal1IsPlayerOne = true;
@@ -270,6 +300,7 @@ public class TicTacToe {
             secondTileOfDiagonal1IsPlayerOne = false;
         }
 
+        // Get player one's status on the third row and third column
         if (secondTileOfDiagonal1IsPlayerOne == true) {
             if (thirdTileOfDiagonal1 == PLAYER_ONE)
                 thirdTileOfDiagonal1IsPlayerOne = true;
@@ -280,6 +311,10 @@ public class TicTacToe {
             thirdTileOfDiagonal1IsPlayerOne = false;
         }
 
+        // Check if the first row and first column is marked by player one,
+        // the second row and second column is marked by player one,
+        // the third row and third column is marked by player one,
+        // and then return player one's number if the entire diagonal is marked by player one
         if (firstTileOfDiagonal1IsPlayerOne == true) {
             if (secondTileOfDiagonal1IsPlayerOne == true) {
                 if (thirdTileOfDiagonal1IsPlayerOne == true)
@@ -294,6 +329,8 @@ public class TicTacToe {
         boolean firstTileOfDiagonal1IsPlayerTwo = false;
         boolean secondTileOfDiagonal1IsPlayerTwo = false;
         boolean thirdTileOfDiagonal1IsPlayerTwo = false;
+
+        // Check player two's status on the tile at first row and first column
         if (firstTileOfDiagonal1 == PLAYER_TWO) {
             firstTileOfDiagonal1IsPlayerTwo = true;
         }
@@ -301,6 +338,7 @@ public class TicTacToe {
             firstTileOfDiagonal1IsPlayerTwo = false;
         }
 
+        // Check player two's status on the tile at second row and second column
         if (firstTileOfDiagonal1IsPlayerTwo == true) {
             if (secondTileOfDiagonal1 == PLAYER_TWO)
                 secondTileOfDiagonal1IsPlayerTwo = true;
@@ -311,6 +349,7 @@ public class TicTacToe {
             secondTileOfDiagonal1IsPlayerTwo = false;
         }
 
+        // Check player two's status on the tile at the third row and third column
         if (secondTileOfDiagonal1IsPlayerTwo == true) {
             if (thirdTileOfDiagonal1 == PLAYER_TWO)
                 thirdTileOfDiagonal1IsPlayerTwo = true;
@@ -321,6 +360,10 @@ public class TicTacToe {
             thirdTileOfDiagonal1IsPlayerTwo = false;
         }
 
+        // Check if the first row and first column is marked by player two,
+        // the second row and second column is marked by player two,
+        // and the third row and third column is marked by player two
+        // and return player two's number if the entire diagonal is marked by player two
         if (firstTileOfDiagonal1IsPlayerTwo == true) {
             if (secondTileOfDiagonal1IsPlayerTwo == true) {
                 if (thirdTileOfDiagonal1IsPlayerTwo == true)
@@ -332,14 +375,16 @@ public class TicTacToe {
         int firstTileOfDiagonal2 = game[2][0];
         int secondTileOfDiagonal2 = game[1][1];
         int thirdTileOfDiagonal2 = game[0][2];
-        boolean firstTileOfDiagonal2IsPlayerOne = false;
-        boolean secondTileOfDiagonal2IsPlayerOne = false;
-        boolean thirdTileOfDiagonal2IsPlayerOne = false;
 
         // Check the other diagonal if player one is the winner
         // _|_|1
         // _|1|_
         // 1| |
+        boolean firstTileOfDiagonal2IsPlayerOne = false;
+        boolean secondTileOfDiagonal2IsPlayerOne = false;
+        boolean thirdTileOfDiagonal2IsPlayerOne = false;
+
+        // Get player one's status on the tile at the third row and first column
         if (firstTileOfDiagonal2 == PLAYER_ONE) {
             firstTileOfDiagonal2IsPlayerOne = true;
         }
@@ -347,6 +392,7 @@ public class TicTacToe {
             firstTileOfDiagonal2IsPlayerOne = false;
         }
 
+        // Get player one's status on the tile at the second row and second column
         if (firstTileOfDiagonal2IsPlayerOne == true) {
             if (secondTileOfDiagonal2 == PLAYER_ONE)
                 secondTileOfDiagonal2IsPlayerOne = true;
@@ -358,6 +404,7 @@ public class TicTacToe {
             secondTileOfDiagonal2IsPlayerOne = false;
         }
 
+        // Get player one's status on the tile at the first row and third column
         if (secondTileOfDiagonal2IsPlayerOne == true) {
             if (thirdTileOfDiagonal2 == PLAYER_ONE)
                 thirdTileOfDiagonal2IsPlayerOne = true;
@@ -368,6 +415,10 @@ public class TicTacToe {
             thirdTileOfDiagonal2IsPlayerOne = false;
         }
 
+        // Check if the third row and first column is marked by player one,
+        // the second row and second column is marked by player one,
+        // the first row and third column is marked by player two,
+        // and return player one's number if the entire diagonal is marked by player one
         if (firstTileOfDiagonal2IsPlayerOne == true) {
             if (secondTileOfDiagonal2IsPlayerOne == true) {
                 if (thirdTileOfDiagonal2IsPlayerOne == true)
@@ -375,14 +426,15 @@ public class TicTacToe {
             }
         }
 
-        boolean firstTileOfDiagonal2IsPlayerTwo = false;
-        boolean secondTileOfDiagonal2IsPlayerTwo = false;
-        boolean thirdTileOfDiagonal2IsPlayerTwo = false;
-
         // Check the other diagonal if player one is the winner
         // _|_|2
         // _|2|_
         // 2| |
+        boolean firstTileOfDiagonal2IsPlayerTwo = false;
+        boolean secondTileOfDiagonal2IsPlayerTwo = false;
+        boolean thirdTileOfDiagonal2IsPlayerTwo = false;
+
+        // Get player two's status on the tile at the third row and first column
         if (firstTileOfDiagonal2 == PLAYER_TWO) {
             firstTileOfDiagonal2IsPlayerTwo = true;
         }
@@ -390,6 +442,7 @@ public class TicTacToe {
             firstTileOfDiagonal2IsPlayerTwo = false;
         }
 
+        // Get player two's status on the tile at the second row and second column
         if (firstTileOfDiagonal2IsPlayerTwo == true) {
             if (secondTileOfDiagonal2 == PLAYER_TWO)
                 secondTileOfDiagonal2IsPlayerTwo = true;
@@ -400,6 +453,7 @@ public class TicTacToe {
             secondTileOfDiagonal2IsPlayerTwo = false;
         }
 
+        // Get player two's status on the tile at the first row and third column
         if (secondTileOfDiagonal2IsPlayerTwo == true) {
             if (thirdTileOfDiagonal2 == PLAYER_TWO)
                 thirdTileOfDiagonal2IsPlayerTwo = true;
@@ -410,6 +464,9 @@ public class TicTacToe {
             thirdTileOfDiagonal2IsPlayerTwo = false;
         }
 
+        // Check player two's status if the diagonal at the third row and first column, second row and second column,
+        // first row and third column is marked by player two,
+        // and return player two's number if it is
         if (firstTileOfDiagonal2IsPlayerTwo == true) {
             if (secondTileOfDiagonal2IsPlayerTwo == true) {
                 if (thirdTileOfDiagonal2IsPlayerTwo == true)
@@ -420,11 +477,12 @@ public class TicTacToe {
     }
 
     public boolean cannotPlay() {
-        boolean result = true;
+        boolean result = true; // Make an initial assumption that the game cannot be played
+        // Loop through the board
         for (int row = 0; row < SIDE; row++) {
             for (int col = 0; col < SIDE; col++) {
-                if (game[row][col] == 0)
-                    result = false;
+                if (game[row][col] == 0) // If we find an empty board tile, that means the game can still be played
+                    result = false; // Set the results to false to indicate the game can still be played
             }
         }
         return result;
@@ -434,23 +492,38 @@ public class TicTacToe {
     // @return boolean - Returns true if the game is over, false otherwise
     public boolean isGameOver()
     {
-        if (whoWon() > 0) {
+        // If we have a winner, then the game is over
+        if (whoWon() > 0)
             return true;
-        }
+
+        // If the game board is completely filled, then the game is over
         if (cannotPlay() == true)
             return true;
-        else
-            return false;
+
+        // The game is not over
+        return false;
     }
 
     // resetGame - Clears the board and sets turn to 1
     public void resetGame()
     {
-        for (int row = 0; row < SIDE; row++) {
-            for (int col = 0; col < SIDE; col++) {
-                game[row][col] = 0;
+        // Loop through the board
+        for (int row = 0; row < SIDE; row++) { // Loop through the rows of the board
+            for (int col = 0; col < SIDE; col++) { // Loop through the rows of the column
+                game[row][col] = 0; // Clears the board
             }
         }
-        turn = 1;
+        turn = 1; // Sets turn to 1
+    }
+
+    // result - the status of the game as a string
+    // @return string - the status of the game
+    public String result() {
+        if (whoWon() > 0)
+            return "Player " + whoWon() + " won";
+        else if (cannotPlay())
+            return "Tie Game";
+        else
+            return "PLAY !!";
     }
 }
