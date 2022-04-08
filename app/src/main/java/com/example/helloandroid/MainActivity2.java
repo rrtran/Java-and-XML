@@ -12,12 +12,13 @@ import android.widget.Button;
 import android.widget.GridLayout;
 
 public class MainActivity2 extends AppCompatActivity {
+    private TicTacToe ticTacToeGame;
     private Button[][] buttons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main2);
+        ticTacToeGame = new TicTacToe();
         buildGuiByCode();
     }
 
@@ -51,8 +52,27 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void update(int row, int column) {
         Log.w("MainActivity", "Inside update: " + row + ", " + column);
-        buttons[row][column].setText("X");
+        int play = ticTacToeGame.play(row, column);
+        if (play == TicTacToe.PLAYER_ONE)
+            buttons[row][column].setText("X");
+        else if (play == TicTacToe.PLAYER_TWO)
+            buttons[row][column].setText("O");
+        else
+            Log.w("MainActivity", "Inside update: move illegal");
+
+        if (ticTacToeGame.isGameOver())
+            enableButtons(false);
+
     }
+
+    public void enableButtons(boolean enabled) {
+        for (int row = 0; row < TicTacToe.SIDE; row++) {
+            for (int column = 0; column < TicTacToe.SIDE; column++) {
+                buttons[row][column].setEnabled(enabled);
+            }
+        }
+    }
+
     private class ButtonHandler implements View.OnClickListener {
         @Override
         public void onClick(View view) {

@@ -4,6 +4,8 @@ public class TicTacToe {
     public static final int SIDE = 3;
     private int[][] game;
     private int turn;
+    static final int PLAYER_ONE = 1;
+    static final int PLAYER_TWO = 2;
 
     // TicTacToe - initializes the game board and calls the resetGame() function
     public TicTacToe()
@@ -20,7 +22,7 @@ public class TicTacToe {
     {
         boolean rowIndexWithinRange = false;
         if (0 <= row) {
-            if (row <= SIDE - 1)
+            if (row < SIDE)
                 rowIndexWithinRange = true;
             else
                 return 0;
@@ -31,7 +33,7 @@ public class TicTacToe {
 
         boolean columnIndexWithinRange = false;
         if (0 <= column) {
-            if (column <= SIDE - 1)
+            if (column < SIDE)
                 columnIndexWithinRange = true;
             else
                 return 0;
@@ -43,7 +45,7 @@ public class TicTacToe {
         boolean moveLegalityState = false;
         if (rowIndexWithinRange == true) {
             if (columnIndexWithinRange == true) {
-                if (game[row][column] == 0)
+                if (game[row][column] == 0) // the move is legal if the tile is empty
                     moveLegalityState = true;
             }
             else {
@@ -77,9 +79,6 @@ public class TicTacToe {
     // @return int Returns i if player i won, 0 if nobody has won yet
     public int whoWon()
     {
-        final int PLAYER_ONE = 1;
-        final int PLAYER_TWO = 2;
-
         // Check each of the 3 rows if the first player is the winner or the second player is the winner
         for (int row = 0; row <= SIDE - 1; row++) {
             int firstColumnOfCurrentRow = game[row][0];
@@ -433,7 +432,7 @@ public class TicTacToe {
 
     // gameOver - A function to determine if the game is over
     // @return boolean - Returns true if the game is over, false otherwise
-    public boolean gameOver()
+    public boolean isGameOver()
     {
         if (whoWon() > 0) {
             return true;
