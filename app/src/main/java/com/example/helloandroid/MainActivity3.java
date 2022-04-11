@@ -11,4 +11,9 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
     }
+
+    public void modifyData(android.view.View v) {
+        android.content.Intent myIntent = new android.content.Intent(this, DataActivity.class);
+        this.startActivity(myIntent);
+    }
 }
