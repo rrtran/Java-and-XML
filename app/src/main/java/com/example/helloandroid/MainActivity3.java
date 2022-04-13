@@ -35,5 +35,6 @@ public class MainActivity3 extends AppCompatActivity {
     public void modifyData(android.view.View v) {
         android.content.Intent myIntent = new android.content.Intent(this, DataActivity.class);
         this.startActivity(myIntent);
+        overridePendingTransition(R.anim.slide_from_left, 0);
     }
 }

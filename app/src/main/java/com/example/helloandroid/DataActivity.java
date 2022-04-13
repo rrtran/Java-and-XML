@@ -14,6 +14,7 @@ public class DataActivity extends androidx.appcompat.app.AppCompatActivity {
     public void goBack(android.view.View v) {
         updateMortgageObject();
         this.finish();
+        overridePendingTransition(R.anim.fade_in_and_scale, 0);
     }
 
     public void updateView() {
