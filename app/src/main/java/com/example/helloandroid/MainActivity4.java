@@ -1,5 +1,6 @@
 package com.example.helloandroid;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -48,6 +49,8 @@ public class MainActivity4 extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.action_add) {
             Log.w("MainActivity", "Add selected");
+            Intent intent = new Intent(this, InsertActivity.class);
+            this.startActivity(intent);
             return true;
         }
         else if (id == R.id.action_delete) {

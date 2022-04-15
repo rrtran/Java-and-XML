@@ -12,13 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".InsertActivity"
+            android:theme="@style/AppThemeCandyStore"
+            android:label="@string/title_activity_main4"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity4"
             android:exported="false"
             android:label="@string/title_activity_main4"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -51,6 +59,7 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMortgage">
+
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
