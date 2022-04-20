@@ -12,16 +12,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity4"
-            android:exported="false"
-            android:label="@string/title_activity_main4"
+            android:name=".ListActivity"
+            android:theme="@style/AppThemeList"
+            android:label="@string/title_activity_list"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity4"
+            android:exported="false"
+            android:label="@string/title_activity_main4"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".InsertActivity"
@@ -37,10 +44,10 @@
             android:theme="@style/AppThemeCandyStore" />
         <activity
             android:name=".UpdateActivity"
+            android:exported="false"
             android:label="@string/title_activity_main4"
-            android:theme="@style/AppThemeCandyStore"
             android:screenOrientation="portrait"
-            android:exported="false" />
+            android:theme="@style/AppThemeCandyStore" />
         <activity
             android:name=".MainActivity2"
             android:exported="false"

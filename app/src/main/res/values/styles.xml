@@ -7,6 +7,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppThemeList" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textSize">24sp</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="AppThemeMortgage" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:textSize">22sp</item>
         <item name="colorPrimary">@color/colorPrimary</item>
