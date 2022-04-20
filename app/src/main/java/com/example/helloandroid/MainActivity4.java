@@ -1,17 +1,18 @@
 package com.example.helloandroid;
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
-
 import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridLayout;
+import android.widget.ScrollView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
@@ -19,9 +20,16 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
+
 import com.example.helloandroid.databinding.ActivityMain4Binding;
 
 public class MainActivity4 extends AppCompatActivity {
+    private DatabaseManager dbManager;
+    private double total;
+    private ScrollView scrollView;
+    private int buttonWidth;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMain4Binding binding;
 
@@ -31,6 +39,52 @@ public class MainActivity4 extends AppCompatActivity {
         setContentView(R.layout.activity_main4); // Show the main layout for the CandyStore activity
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar); // Get a reference to toolbar
         setSupportActionBar(toolbar);  // Set the action bar to use the toolbar referenced by the toolbar reference
+        dbManager = new DatabaseManager(this);
+        total = 0.0;
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        buttonWidth = size.x / 2;
+        updateView();
+    }
+
+    public void onResume() {
+        super.onResume();
+        updateView();
+    }
+
+    public void updateView() {
+        ArrayList<Candy> candies = dbManager.selectAll();
+        if (candies.size() > 0) {
+            // remove subviews inside scrollView if necessary
+            scrollView.removeAllViewsInLayout();
+
+            // set up the grid layout
+            GridLayout grid = new GridLayout(this);
+            grid.setRowCount((candies.size() + 1) / 2);
+            grid.setColumnCount(2);
+
+            // create array buttons, 2 per row
+            CandyButton[] buttons = new CandyButton[candies.size()];
+            ButtonHandler buttonHandler = new ButtonHandler();
+
+            // fill the grid
+            int i = 0;
+            for (Candy candy : candies) {
+
+                // create the button
+                buttons[i] = new CandyButton(this, candy);
+                buttons[i].setText(candy.getName() + "\n" + candy.getPrice());
+
+                // set up event handling
+                buttons[i].setOnClickListener(buttonHandler);
+
+                // add the button to grid
+                grid.addView(buttons[i], buttonWidth, GridLayout.LayoutParams.WRAP_CONTENT);
+                i++;
+            }
+            scrollView.addView(grid);
+        }
     }
 
     // onCreateOptionsMenu - initizliaes the menu with menu items from the menu layout
@@ -65,15 +119,23 @@ public class MainActivity4 extends AppCompatActivity {
             this.startActivity(intent);
             return true;
         }
+        else if (id == R.id.action_reset) {
+            total = 0.0;
+            return true;
+        }
         else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    private class ButtonHandler implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            // retrieve price of the candy and add it to total
+            total += ((CandyButton) v).getPrice();
+            String pay = NumberFormat.getCurrencyInstance().format(total);
+            Toast.makeText(MainActivity4.this, pay, Toast.LENGTH_LONG).show();
+        }
     }
 }
