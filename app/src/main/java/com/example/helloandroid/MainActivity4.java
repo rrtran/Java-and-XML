@@ -55,6 +55,8 @@ public class MainActivity4 extends AppCompatActivity {
         }
         else if (id == R.id.action_delete) {
             Log.w("MainActivity", "Delete selected");
+            Intent intent = new Intent(this, DeleteActivity.class);
+            this.startActivity(intent);
             return true;
         }
         else if (id == R.id.action_update) {
