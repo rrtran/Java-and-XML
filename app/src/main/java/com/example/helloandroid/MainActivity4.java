@@ -61,6 +61,8 @@ public class MainActivity4 extends AppCompatActivity {
         }
         else if (id == R.id.action_update) {
             Log.w("MainActivity", "Update selected");
+            Intent intent = new Intent(this, UpdateActivity.class);
+            this.startActivity(intent);
             return true;
         }
         else {

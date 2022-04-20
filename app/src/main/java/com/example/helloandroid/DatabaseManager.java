@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class DatabaseManager extends SQLiteOpenHelper {
@@ -23,7 +25,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sqlCreate = "create table " + TABLE_CANDY + "(" + ID;
         sqlCreate += " integer primary key autoincrement, " + NAME;
-        sqlCreate += "text, " + PRICE + " real)";
+        sqlCreate += " text, " + PRICE + " real)";
         db.execSQL(sqlCreate);
     }
 
@@ -33,12 +35,24 @@ public class DatabaseManager extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("drop table if exists " + TABLE_CANDY);
+        onCreate(db);
+    }
+
     public void insert(Candy candy) {
         SQLiteDatabase db = this.getWritableDatabase();
         String sqlInsert = "insert into " + TABLE_CANDY;
         sqlInsert += " values(null, '" + candy.getName();
         sqlInsert += "', '" + candy.getPrice() + "')";
-        db.execSQL(sqlInsert);
+        try {
+            Log.w("DatabaseManager", "Hello Insert");
+            db.execSQL(sqlInsert);
+        }
+        catch (Exception e) {
+            Log.w("DatabaseManager", e.toString());
+        }
         db.close();
     }
 
@@ -53,11 +67,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void updateById(int id, String name, double price) {
         SQLiteDatabase db = this.getWritableDatabase();
 
+        // update candy set name = 'Walnut chocolate', price = '2.99' where id = 4;
         String sqlUpdate = "update " + TABLE_CANDY;
         sqlUpdate += " set " + NAME + " = '" + name + "', ";
         sqlUpdate += PRICE + " = '" + price + "'";
         sqlUpdate += " where " + ID + " = " + id;
-        db.execSQL(sqlUpdate);
+        try {
+            Log.w("DatabaseManager", "Hello");
+            db.execSQL(sqlUpdate);
+        }
+        catch (Exception e) {
+            Log.w("DatabaseManager", e.toString());
+        }
         db.close();
     }
 
