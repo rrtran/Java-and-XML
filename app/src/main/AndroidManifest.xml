@@ -12,11 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Cannon_MainActivity"
+            android:label="@string/cannon_name"
+            android:screenOrientation="landscape"
+            android:exported="false" />
+        <activity
+            android:name=".Puzzle_MainActivity"
+            android:exported="false"
+            android:label="@string/puzzle_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemePuzzle" />
+        <activity
+            android:name=".On_Configuration_Change_2_MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name=".On_Configuration_Change_MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true" />
+        <activity
+            android:name=".Orientation_MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListActivity"
-            android:theme="@style/AppThemeList"
+            android:exported="true"
             android:label="@string/title_activity_list"
             android:screenOrientation="portrait"
-            android:exported="false">
+            android:theme="@style/AppThemeList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,12 +46,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity4"
+            android:name=".Candy_Store_MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main4"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".InsertActivity"
             android:exported="false"
@@ -49,7 +70,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeCandyStore" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".TicTacToeMainActivity"
             android:exported="false"
             android:screenOrientation="portrait">
 
@@ -61,7 +82,7 @@
             -->
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".TipCalculatorMainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
 
@@ -74,7 +95,7 @@
             -->
         </activity>
         <activity
-            android:name=".MainActivity3"
+            android:name=".Mortgage_MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeMortgage">

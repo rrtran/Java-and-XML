@@ -46,6 +46,16 @@
     <string name="button_add">ADD</string>
     <string name="button_back">BACK</string>
     <string name="reset">RESET</string>
-
     <string name="title_activity_list">Menu</string>
+    <string name="portrait">portrait</string>
+    <string name="landscape">landscape</string>
+    <string name="view1">GO TO VIEW 1</string>
+    <string name="view2">GO TO VIEW 2</string>
+    <string name="view3">GO TO VIEW 3</string>
+
+    <!-- Puzzle -->
+    <string name="puzzle_name">Puzzle</string>
+
+    <!-- Cannon -->
+    <string name="cannon_name">Cannon</string>
 </resources>

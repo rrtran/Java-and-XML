@@ -18,7 +18,7 @@ public class DataActivity extends androidx.appcompat.app.AppCompatActivity {
     }
 
     public void updateView() {
-        Mortgage mortgage = MainActivity3.mortgage; // Get a reference to the Mortgage model
+        Mortgage mortgage = Mortgage_MainActivity.mortgage; // Get a reference to the Mortgage model
         if (mortgage.getYears() == 10) { // Check the 10-year mortgage term radio button if the mortgage model has 10 as the mortgage term
             RadioButton radioButton10 = (RadioButton)findViewById(R.id.ten); // Get the "ten" radio button
             radioButton10.setChecked(true); // Mark the radio button as "checked"
@@ -38,7 +38,7 @@ public class DataActivity extends androidx.appcompat.app.AppCompatActivity {
     }
 
     public void updateMortgageObject() {
-        Mortgage mortgage = MainActivity3.mortgage; // Get the Mortgage reference
+        Mortgage mortgage = Mortgage_MainActivity.mortgage; // Get the Mortgage reference
         RadioButton radioButton10 = (RadioButton)findViewById(R.id.ten); // Get a radio button for a 10-year mortgage term
         RadioButton radioButton15 = (RadioButton)findViewById(R.id.fifteen); // Get the radio button for a a 15-year mortgage term
         int years;

@@ -5,14 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
-import android.text.TextWatcher;
+
 import java.text.NumberFormat;
 
-public class MainActivity extends AppCompatActivity {
+public class TipCalculatorMainActivity extends AppCompatActivity {
     private TipCalculator tipCalc;
     public NumberFormat money = NumberFormat.getCurrencyInstance();
     private EditText billEditText;
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         tipCalc = new TipCalculator(0.17f, 100.0f); // Initialize a new tip calculator
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.tip_calculator_activity_main);
 
         billEditText = (EditText)findViewById(R.id.amount_bill); // Get a reference to the amount bill edit box
         tipEditText = (EditText)findViewById(R.id.amount_tip_percent); // Get a reference to the amount_tip_percent edit box

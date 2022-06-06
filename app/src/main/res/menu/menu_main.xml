@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.helloandroid.MainActivity4">
+    tools:context="com.example.helloandroid.Candy_Store_MainActivity">
 
     <item android:id="@+id/action_reset"
         android:title="@string/reset"

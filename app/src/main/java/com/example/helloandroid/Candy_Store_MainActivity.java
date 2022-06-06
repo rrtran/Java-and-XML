@@ -3,7 +3,7 @@ package com.example.helloandroid;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -15,28 +15,22 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-import com.example.helloandroid.databinding.ActivityMain4Binding;
-
-public class MainActivity4 extends AppCompatActivity {
+public class Candy_Store_MainActivity extends AppCompatActivity {
     private DatabaseManager dbManager;
     private double total;
     private ScrollView scrollView;
     private int buttonWidth;
     private AppBarConfiguration appBarConfiguration;
-    private ActivityMain4Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main4); // Show the main layout for the CandyStore activity
+        setContentView(R.layout.candy_store_activity_main); // Show the main layout for the CandyStore activity
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar); // Get a reference to toolbar
         setSupportActionBar(toolbar);  // Set the action bar to use the toolbar referenced by the toolbar reference
         dbManager = new DatabaseManager(this);
@@ -135,7 +129,7 @@ public class MainActivity4 extends AppCompatActivity {
             // retrieve price of the candy and add it to total
             total += ((CandyButton) v).getPrice();
             String pay = NumberFormat.getCurrencyInstance().format(total);
-            Toast.makeText(MainActivity4.this, pay, Toast.LENGTH_LONG).show();
+            Toast.makeText(Candy_Store_MainActivity.this, pay, Toast.LENGTH_LONG).show();
         }
     }
 }

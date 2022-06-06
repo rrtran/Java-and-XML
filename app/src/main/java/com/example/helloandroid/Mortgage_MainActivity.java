@@ -5,14 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class MainActivity3 extends AppCompatActivity {
+public class Mortgage_MainActivity extends AppCompatActivity {
     public static Mortgage mortgage; // Make available to other activity classes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mortgage = new Mortgage(this); // Define Mortgage variable
-        setContentView(R.layout.activity_main3); // Show the read-only view of the Mortgage app
+        setContentView(R.layout.mortgage_activity_main); // Show the read-only view of the Mortgage app
     }
 
     public void onStart() {

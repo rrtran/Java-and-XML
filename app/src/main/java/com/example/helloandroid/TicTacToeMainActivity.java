@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
-public class MainActivity2 extends AppCompatActivity {
+public class TicTacToeMainActivity extends AppCompatActivity {
     private TicTacToe ticTacToeGame;
     private Button[][] buttons;
     private ButtonGridAndTextView ticTacToeView;
@@ -114,6 +114,11 @@ public class MainActivity2 extends AppCompatActivity {
             status.setBackgroundColor(Color.RED);  // Set the background color of status to red
             enableButtons(false); // disable the buttons
             status.setText(ticTacToeGame.result()); // Display the result of the game inside status
+            while (ticTacToeGame.rows.length() > 0) {
+                Log.w("MainActivity", "(" + ticTacToeGame.rows.getFirst() + ", " + ticTacToeGame.columns.getFirst() + ")");
+                ticTacToeGame.rows.deleteNode(ticTacToeGame.rows.getFirst());
+                ticTacToeGame.columns.deleteNode(ticTacToeGame.columns.getFirst());
+            }
             showNewGameDialog();
         }
     }
@@ -141,7 +146,7 @@ public class MainActivity2 extends AppCompatActivity {
                 status.setText(ticTacToeGame.result()); // Set the status to indicate the game is being played
             }
             else if (id == -2) {
-                MainActivity2.this.finish(); // Close the activity
+                TicTacToeMainActivity.this.finish(); // Close the activity
             }
         }
     }
@@ -157,7 +162,7 @@ public class MainActivity2 extends AppCompatActivity {
                 ticTacToeView.setStatusBackgroundColor(Color.GREEN);
                 ticTacToeView.setStatusText(ticTacToeGame.result());
             } else if (id == -2) { /* NO button */
-                MainActivity2.this.finish();
+                TicTacToeMainActivity.this.finish();
             }
         }
     }
@@ -166,7 +171,6 @@ public class MainActivity2 extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Log.w("MainActivity", "Inside onClick, v = " + view);
-
             // Loop through each button on the Grid and check if any of those buttons is the button
             // that was clicked
             for (int row = 0; row < TicTacToe.SIDE; row++) { // loop through the rows

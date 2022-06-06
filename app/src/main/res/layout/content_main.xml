@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.helloandroid.MainActivity4"
-    tools:showIn="@layout/activity_main"
+    tools:context="com.example.helloandroid.Candy_Store_MainActivity"
+    tools:showIn="@layout/tip_calculator_activity_main"
     android:id="@+id/scrollView">
 
 </ScrollView>
