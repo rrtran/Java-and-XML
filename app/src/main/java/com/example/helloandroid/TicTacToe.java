@@ -1,21 +1,15 @@
 package com.example.helloandroid;
 
-import com.example.datastructures.SinglyLinkedList;
-
 public class TicTacToe {
     public static final int SIDE = 3;
     private int[][] game;
     private int turn;
-    public SinglyLinkedList rows;
-    public SinglyLinkedList columns;
     static final int PLAYER_ONE = 1;
     static final int PLAYER_TWO = 2;
 
     // TicTacToe - initializes the game board and calls the resetGame() function
     public TicTacToe()
     {
-        rows = new SinglyLinkedList();
-        columns = new SinglyLinkedList();
         game = new int[SIDE][SIDE]; // Initialize a 2D array representing the game board
         resetGame(); // Clears the board and sets the turn to player 1
     }
@@ -72,9 +66,6 @@ public class TicTacToe {
             game[row][column] = turn;
             if (turn == 1) turn = 2;
             else turn = 1;
-
-            rows.insertBack(row);
-            columns.insertBack(column);
 
             return currentTurn;
         }

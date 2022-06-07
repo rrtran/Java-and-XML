@@ -114,11 +114,6 @@ public class TicTacToeMainActivity extends AppCompatActivity {
             status.setBackgroundColor(Color.RED);  // Set the background color of status to red
             enableButtons(false); // disable the buttons
             status.setText(ticTacToeGame.result()); // Display the result of the game inside status
-            while (ticTacToeGame.rows.length() > 0) {
-                Log.w("MainActivity", "(" + ticTacToeGame.rows.getFirst() + ", " + ticTacToeGame.columns.getFirst() + ")");
-                ticTacToeGame.rows.deleteNode(ticTacToeGame.rows.getFirst());
-                ticTacToeGame.columns.deleteNode(ticTacToeGame.columns.getFirst());
-            }
             showNewGameDialog();
         }
     }
